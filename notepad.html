@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Notepad</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+       <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+       <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+      <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    </head>
+    <body>
+        <script>
+        var counter=0;
+        function add_text(t) {
+            if (t.value==="") {
+                return;
+            }
+            if (counter>=100) {
+                alert('You are done. Thanks');
+                t.value="";
+                return;
+            }
+            
+        var x=document.getElementById('div2');
+        
+        // x.appendChild(document.createElement('br'));
+        //  x.appendChild(document.createTextNode(y.value));
+                x.insertAdjacentHTML('beforeend', t.value + '<br>');
+                t.value = "";
+                counter += 5;
+                add_prog(counter);
+                
+            };
+            function add_prog(x) {
+                  $( "#div3" ).progressbar({ value: x});
+                  document.getElementById("hd2").innerHTML="Progress: "+counter+"%";
+           }
+           
+           function clear_all() {
+            document.getElementById('div2').innerHTML='';  
+            counter=0;
+            add_prog(0);
+           }
+        </script>
+        
+        <div class="container">
+            <br>
+            <div id="div1" class="col-sm-6 col-sm-offset-6 col-sm-pull-6 well" >
+                <button class="btn-lg btn-info" type="button" id="b1" onclick="add_text(document.getElementById('t1'));">Add Notes</button>
+                <input onchange="add_text(this);" class="input-lg" type="text" id="t1" size="41" maxlength="46">
+            
+            </div>
+            <div class="col-sm-6 col-sm-offset-6 col-sm-pull-6 well">
+            <h2 class="h2">Your Notes
+            <button class="btn-lg btn-danger pull-right" type="button" id="b2" onclick="clear_all();">Clear All</button>
+            </h2></div>
+            
+            <div id="div2" class="col-md-6 col-md-offset-6 col-md-pull-6 well"></div> 
+            <h2 id="hd2" class="col-md-6 h2 well">Progress</h2>
+            <div class="col-lg-6 col-lg-offset-6 col-lg-pull-6 well">
+            <div id="div3" class="ui-progressbar"></div>
+            </div>
+        </div> 
+     
+    </body>
+</html>
